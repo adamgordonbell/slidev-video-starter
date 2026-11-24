@@ -1,0 +1,5 @@
+node_modules
+build
+out/*
+!out/example.mp4
+deck/dist

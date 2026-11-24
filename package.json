@@ -1,0 +1,26 @@
+{
+  "name": "slidev-video-starter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "cd deck && npm install --no-audit --no-fund",
+    "slides": "cd deck && npx slidev slides.md --port 3046 --open",
+    "words": "node tools/transcribe.mjs",
+    "align": "node tools/align.mjs",
+    "deck": "node tools/record-deck.mjs",
+    "preview": "remotion studio tools/video/index.ts --public-dir=build/public",
+    "render": "remotion render tools/video/index.ts Video out/video.mp4 --public-dir=build/public",
+    "all": "npm run align && npm run deck && npm run render"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.419",
+    "playwright": "1.56.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "remotion": "4.0.419"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.13",
+    "typescript": "5.9.3"
+  }
+}
