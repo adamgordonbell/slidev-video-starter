@@ -65,6 +65,6 @@ const durationMs = Math.round(words.at(-1).end * 1000) + 600;
 fs.mkdirSync("build/public", { recursive: true });
 fs.writeFileSync("build/timeline.json", JSON.stringify({ durationMs, events }, null, 1));
 // Remotion plays files from one folder, build/public: link media/ into it (the deck's clips go beside it)
-fs.rmSync("build/public/media", { force: true });
+try { fs.unlinkSync("build/public/media"); } catch (e) { if (e.code !== "ENOENT") throw e; }
 fs.symlinkSync(path.resolve("media"), "build/public/media");
 for (const e of events) console.log(`${(e.atMs / 1000).toFixed(2).padStart(6)}s  ${e.show === "deck" ? `slide ${e.slide}:${e.click}` : "head"}  ← "${e.word}"`);
